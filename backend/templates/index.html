@@ -5,7 +5,7 @@
         <div class="row mb-4">
             <div class="col-12">
                 <h1>Gif Catalog</h1>
-                {{ msg }}
+                {{ msg }} <a href="/" class="btn btn-primary btn-sm">show others...</a>
             </div>
         </div>
         <div class="row">
@@ -24,6 +24,10 @@
             {% endfor %}
 
         </div>
-
+        <div class="row">
+            <div class="col-12">
+                <a href="/" class="btn btn-primary mb-5 w-100">show others...</a>
+            </div>
+        </div>
     </div>
 {% endblock %}
