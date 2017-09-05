@@ -15,4 +15,12 @@ export default {
             return response.data.pics;
         });
     },
+    getSuggestions(q) {
+        const params = {
+            q,
+        };
+        return axios.get('/api/search_suggestions/', {params: params}).then(response => {
+            return response.data.suggestions;
+        });
+    },
 }

@@ -2,7 +2,14 @@
     <div>
         <div class="row mb-4">
             <div class="col">
-                <input type="text" placeholder="search" v-model="q">
+                <input type="text" placeholder="search" v-model="q" autofocus>
+                <div class="dropdown" :class="{show: suggestions.length}">
+                    <div class="dropdown-menu" :class="{show: suggestions.length}">
+                        <a class="dropdown-item"
+                           v-for="suggestion in suggestions"
+                           @click="selectSuggestion(suggestion)">{{suggestion}}</a>
+                    </div>
+                </div>
             </div>
             <div class="col">
                 <button @click="reloadPics" class="btn btn-primary">show others...</button>
@@ -23,15 +30,19 @@
             return {
                 pics: [],
                 q: '',
+                suggestions: [],
+                dontGetSuggestions: false,
             };
         },
         watch: {
             q() {
                 if (this.q) {
+                    this.getSuggestions(this.q);
                     this.searchFor(this.q);
                 }
                 else {
                     this.reloadPics();
+                    this.suggestions = [];
                 }
             },
         },
@@ -45,7 +56,23 @@
                 gifPicsApi.search(q).then(pics => {
                     this.pics = pics;
                 });
-            }
+            },
+            getSuggestions(q) {
+                if (this.dontGetSuggestions) {
+                    this.dontGetSuggestions = false;
+                    return;
+                }
+                gifPicsApi.getSuggestions(q).then(suggestions => {
+                    this.suggestions = suggestions.slice(0, 8);
+                })
+            },
+            selectSuggestion(suggestion) {
+                this.dontGetSuggestions = true;
+                this.q = suggestion;
+                this.$nextTick(() => {
+                    this.suggestions = [];
+                });
+            },
         },
         mounted() {
             this.reloadPics();
