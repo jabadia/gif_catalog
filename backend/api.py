@@ -53,6 +53,7 @@ def search(request):
     return JsonResponse(result)
 
 
+@api_login_required
 def search_suggestions(request):
     global all_words
     q = request.GET.get('q', None)
