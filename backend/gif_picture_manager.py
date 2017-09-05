@@ -21,7 +21,7 @@ class GifPictureManager:
     @classmethod
     def search(cls, q, start=0, how_many=18):
         gif_pictures = GifPicture.objects.filter(
-            reduce(and_, [Q(title__icontains=term) for term in q])
+            reduce(and_, [Q(title__iregex=r'\b%s\b' % (term,)) for term in q])
         ).order_by('-upload_date')[start:start+how_many]
         return list(gif_pictures)
 
