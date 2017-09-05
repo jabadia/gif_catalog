@@ -9,12 +9,19 @@
 </template>
 
 <script>
+    import gifPicsApi from '../services/gifPicsApi.js';
+
     export default {
         data() {
             return {
                 pics: [],
             };
         },
+        mounted() {
+            gifPicsApi.getRandomPics().then(pics => {
+                this.pics = pics;
+            });
+        }
     };
 </script>
 
