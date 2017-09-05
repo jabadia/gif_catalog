@@ -1,7 +1,10 @@
 <template>
     <div>
         <div class="row mb-4">
-            <div class="col-12">
+            <div class="col">
+                <input type="text" placeholder="search" v-model="q">
+            </div>
+            <div class="col">
                 <button @click="reloadPics" class="btn btn-primary">show others...</button>
             </div>
         </div>
@@ -19,11 +22,27 @@
         data() {
             return {
                 pics: [],
+                q: '',
             };
+        },
+        watch: {
+            q() {
+                if (this.q) {
+                    this.searchFor(this.q);
+                }
+                else {
+                    this.reloadPics();
+                }
+            },
         },
         methods: {
             reloadPics() {
                 gifPicsApi.getRandomPics().then(pics => {
+                    this.pics = pics;
+                });
+            },
+            searchFor(q) {
+                gifPicsApi.search(q).then(pics => {
                     this.pics = pics;
                 });
             }

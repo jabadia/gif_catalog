@@ -2,8 +2,16 @@ import axios from 'axios';
 
 export default {
     getRandomPics() {
-        return axios.get('/api/pics').then(response =>
+        return axios.get('/api/pics/').then(response =>
         {
+            return response.data.pics;
+        });
+    },
+    search(q) {
+        const params = {
+            q,
+        };
+        return axios.get('/api/search/', {params: params}).then(response => {
             return response.data.pics;
         });
     },
