@@ -2,7 +2,10 @@
     <div>
         <div class="row mb-4">
             <div class="col">
-                <input type="text" placeholder="search" v-model="q" autofocus>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="search" v-model="q" autofocus>
+                    <span class="input-group-addon" @click="q=''">&times;</span>
+                </div>
                 <div class="dropdown" :class="{show: suggestions.length}">
                     <div class="dropdown-menu" :class="{show: suggestions.length}">
                         <a class="dropdown-item"
