@@ -19,6 +19,11 @@ class GifPictureManager:
         return list(gif_pictures)
 
     @classmethod
+    def get_pic(cls, id):
+        pic = GifPicture.objects.get(id=id)
+        return pic
+
+    @classmethod
     def search(cls, q, start=0, how_many=18):
         gif_pictures = GifPicture.objects.filter(
             reduce(and_, [Q(title__iregex=r'\b%s\b' % (term,)) for term in q])

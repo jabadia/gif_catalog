@@ -37,6 +37,12 @@ def pics(request):
 
 
 @api_login_required
+def pic_details(request, id):
+    gif_picture = _serialize_model(GifPictureManager.get_pic(id))
+    return JsonResponse(gif_picture)
+
+
+@api_login_required
 def search(request):
     q = request.GET.get('q', None)
     if not q:
