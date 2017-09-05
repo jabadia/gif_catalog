@@ -6,7 +6,7 @@
                 {{msg}}
             </div>
             <div class="col-auto">
-                <a class="pull-right" href="/logout/">logout</a>
+                <a class="pull-right" href="/logout/">logout <b>{{user.username}}</b></a>
             </div>
         </div>
         <gif-home></gif-home>
@@ -20,11 +20,15 @@
         name: 'app',
         data() {
             return {
-                msg: 'Welcome to Your Vue.js App!'
+                msg: 'Welcome to Your Vue.js App!',
+                user: {},
             }
         },
         components: {
             GifHome,
+        },
+        created() {
+            this.user = window.user;
         },
     }
 </script>

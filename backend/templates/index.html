@@ -3,5 +3,11 @@
 
 {% block content %}
     <div id="app"></div>
+    <script>
+    var user = {
+        username: "{{ user.username }}",
+        email: "{{ user.email }}",
+    };
+    </script>
     {% render_bundle 'main' %}
 {% endblock %}

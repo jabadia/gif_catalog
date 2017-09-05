@@ -9,5 +9,6 @@ from django.shortcuts import render
 def index(request):
     context = {
         'msg': "randomly picked images",
+        'user': request.user,
     }
     return render(request, 'index.html', context)
