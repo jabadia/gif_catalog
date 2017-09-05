@@ -1,15 +1,12 @@
 <template>
     <div class="row">
-        <div class="col-12">
-            <ul>
-            <li v-for="pic in pics">{{pic.id}}.- {{pic.title}}</li>
-            </ul>
-        </div>
+        <gif-pic v-for="pic in pics" :key="pic.id" :pic="pic"></gif-pic>
     </div>
 </template>
 
 <script>
     import gifPicsApi from '../services/gifPicsApi.js';
+    import GifPic from './GifPic.vue';
 
     export default {
         data() {
@@ -21,7 +18,10 @@
             gifPicsApi.getRandomPics().then(pics => {
                 this.pics = pics;
             });
-        }
+        },
+        components: {
+            GifPic,
+        },
     };
 </script>
 
