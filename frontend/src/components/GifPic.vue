@@ -6,7 +6,7 @@
             <div class="card-body d-flex flex-column align-items-start">
                 <h4 class="card-title">{{ pic.title }}</h4>
                 <p class="card-text" style="flex-grow: 1"></p>
-                <a href="#" class="btn btn-primary align-self-end">Go</a>
+                <router-link :to="{name: 'detail', params: {id: pic.id}}" class="btn btn-primary align-self-end">Go</router-link>
             </div>
         </div>
     </div>

@@ -23,4 +23,9 @@ export default {
             return response.data.suggestions;
         });
     },
+    getDetail(id) {
+        return axios.get('/api/pics/' + id).then(response => {
+            return response.data;
+        });
+    },
 }

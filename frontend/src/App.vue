@@ -9,13 +9,13 @@
                 <a class="pull-right" href="/logout/">logout <b>{{user.username}}</b></a>
             </div>
         </div>
-        <gif-home></gif-home>
+        <transition name="fade" mode="out-in">
+        <router-view></router-view>
+        </transition>
     </div>
 </template>
 
 <script>
-    import GifHome from './components/GifHome.vue';
-
     export default {
         name: 'app',
         data() {
@@ -23,9 +23,6 @@
                 msg: 'Welcome to Your Vue.js App!',
                 user: {},
             }
-        },
-        components: {
-            GifHome,
         },
         created() {
             this.user = window.user;
@@ -40,4 +37,12 @@
         -moz-osx-font-smoothing: grayscale;
     }
 
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s
+    }
+
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+    {
+        opacity: 0
+    }
 </style>
