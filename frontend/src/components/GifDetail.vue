@@ -24,15 +24,18 @@
         },
         methods: {
             fetchData() {
+                console.log("fetching data", this.id);
                 gifPicsApi.getDetail(this.id).then(detail => {
                     this.pic = detail;
                 });
             }
         },
         watch: {
-            '$route': 'fetchData',
+            id() {
+                this.fetchData();
+            },
         },
-        created() {
+        mounted() {
             this.fetchData();
         }
     };

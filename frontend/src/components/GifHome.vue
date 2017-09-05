@@ -74,7 +74,7 @@
                 });
             },
         },
-        mounted() {
+        created() {
             this.reloadPics();
         },
         components: {
