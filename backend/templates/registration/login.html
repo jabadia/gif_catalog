@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-4">
+                {% if form.errors %}
+                    <p class="text-danger">Your username and password didn't match. Please try again.</p>
+                {% endif %}
+
+                <h1>login</h1>
+                {% if next %}
+                    {% if user.is_authenticated %}
+                        <p>Your account doesn't have access to this page. To proceed,
+                            please login with an account that has access.</p>
+                    {% else %}
+                        <p>Please login to access this page</p>
+                    {% endif %}
+                {% endif %}
+
+                <form class="form" method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                        <div class="input-group">
+                            <input class="form-control"
+                                   id="{{ field.id_for_label }}"
+                                   maxlength="30"
+                                   name="{{ field.html_name }}"
+                                   value="{{ field.value|default:'' }}"
+                                   placeholder="{{ field.label }}"
+                                    {% if field.name == 'password' %}
+                                   type="password"
+                                    {% endif %}
+                            />
+                            {{ field.errors }}
+                        </div>
+                    {% endfor %}
+
+                    <input class="btn btn-primary mt-2" type="submit" value="login"/>
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                </form>
+
+                {# Assumes you setup the password_reset view in your URLconf #}
+                <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
