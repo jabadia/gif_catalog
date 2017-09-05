@@ -1,5 +1,9 @@
 import random
 import re
+from operator import and_
+
+from django.db.models import Q
+
 from backend.models import GifPicture
 
 
@@ -16,7 +20,9 @@ class GifPictureManager:
 
     @classmethod
     def search(cls, q, start=0, how_many=18):
-        gif_pictures = GifPicture.objects.filter(title__icontains=q).order_by('-upload_date')[start:start+how_many]
+        gif_pictures = GifPicture.objects.filter(
+            reduce(and_, [Q(title__icontains=term) for term in q])
+        ).order_by('-upload_date')[start:start+how_many]
         return list(gif_pictures)
 
     @classmethod

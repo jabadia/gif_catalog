@@ -42,6 +42,7 @@ def search(request):
     if not q:
         return JsonResponse({'msg': 'missing query'}, status=400)
 
+    q = q.split(' ')
     start = int(request.GET.get('start', 0))
     how_many = int(request.GET.get('how_many', 18))
     gif_pictures = [_serialize_model(pic) for pic in GifPictureManager.search(q, start, how_many)]
