@@ -12,6 +12,11 @@ class GifPictureManager:
         return list(gif_pictures)
 
     @classmethod
+    def search(cls, q, start=0, how_many=18):
+        gif_pictures = GifPicture.objects.filter(title__icontains=q).order_by('-upload_date')[start:start+how_many]
+        return list(gif_pictures)
+
+    @classmethod
     def get_most_recent_pics(cls, how_many=18):
         gif_pictures = GifPicture.objects.all().order_by('-upload_date')[:how_many]
         return list(gif_pictures)

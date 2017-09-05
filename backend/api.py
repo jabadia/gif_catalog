@@ -34,3 +34,19 @@ def pics(request):
         'pics': gif_pictures,
     }
     return JsonResponse(result)
+
+
+@api_login_required
+def search(request):
+    q = request.GET.get('q', None)
+    if not q:
+        return JsonResponse({'msg': 'missing query'}, status=400)
+
+    start = int(request.GET.get('start', 0))
+    how_many = int(request.GET.get('how_many', 18))
+    gif_pictures = [_serialize_model(pic) for pic in GifPictureManager.search(q, start, how_many)]
+
+    result = {
+        'pics': gif_pictures,
+    }
+    return JsonResponse(result)
