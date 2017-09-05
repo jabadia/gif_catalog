@@ -1,11 +1,12 @@
 var path = require('path')
 var webpack = require('webpack')
+var BundleTracker = require('webpack-bundle-tracker');
 
 module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
+    publicPath: 'http://localhost:8080/dist/',
     filename: 'build.js'
   },
   module: {
@@ -40,12 +41,18 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    }
   },
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins: [
+    new BundleTracker({filename: './webpack-stats.json'})
+  ]
 }
 
 if (process.env.NODE_ENV === 'production') {
