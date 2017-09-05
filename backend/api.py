@@ -50,3 +50,17 @@ def search(request):
         'pics': gif_pictures,
     }
     return JsonResponse(result)
+
+
+def search_suggestions(request):
+    global all_words
+    q = request.GET.get('q', None)
+    if not q:
+        return JsonResponse({'msg': 'missing query'}, status=400)
+
+    suggestions = GifPictureManager.get_search_suggestions(q)
+
+    result = {
+        'suggestions': suggestions,
+    }
+    return JsonResponse(result)
