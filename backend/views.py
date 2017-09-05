@@ -1,21 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import random
-
 from django.shortcuts import render
 
-from backend.models import GifPicture
+from gif_picture_manager import GifPictureManager
 
 
 def index(request):
-    count = GifPicture.objects.all().count()
-    all_ids = range(count)
-    random.shuffle(all_ids)
-    picked_ids = all_ids[:18]
-
-    # gif_pictures = GifPicture.objects.all().order_by('-upload_date')[:18]
-    gif_pictures = GifPicture.objects.filter(id__in=picked_ids).order_by('-upload_date')
+    how_many = 18
+    gif_pictures = GifPictureManager.get_random_pics(how_many)
 
     context = {
         'msg': "randomly picked images",
