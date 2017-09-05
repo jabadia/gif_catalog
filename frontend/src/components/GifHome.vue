@@ -1,6 +1,13 @@
 <template>
-    <div class="row">
-        <gif-pic v-for="pic in pics" :key="pic.id" :pic="pic"></gif-pic>
+    <div>
+        <div class="row mb-4">
+            <div class="col-12">
+                <button @click="reloadPics" class="btn btn-primary">show others...</button>
+            </div>
+        </div>
+        <div class="row">
+            <gif-pic v-for="pic in pics" :key="pic.id" :pic="pic"></gif-pic>
+        </div>
     </div>
 </template>
 
@@ -14,10 +21,15 @@
                 pics: [],
             };
         },
+        methods: {
+            reloadPics() {
+                gifPicsApi.getRandomPics().then(pics => {
+                    this.pics = pics;
+                });
+            }
+        },
         mounted() {
-            gifPicsApi.getRandomPics().then(pics => {
-                this.pics = pics;
-            });
+            this.reloadPics();
         },
         components: {
             GifPic,
