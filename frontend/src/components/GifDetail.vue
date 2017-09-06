@@ -1,12 +1,12 @@
 <template>
-    <div class="row">
-        <div class="col-12">
+    <div class="row justify-content-center">
+        <div class="col-8">
             <h1>{{ pic.title }}</h1>
         </div>
-        <div class="col-12">
+        <div class="col-8">
             <router-link to="/">go back</router-link>
         </div>
-        <div class="col-12">
+        <div class="col-8">
             <img class="img-fluid w-100" :src="pic.gifurl" alt="">
         </div>
     </div>

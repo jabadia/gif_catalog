@@ -33,6 +33,9 @@
 </script>
 
 <style>
+    body {
+        overflow-y: scroll;
+    }
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
