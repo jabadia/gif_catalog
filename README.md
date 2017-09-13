@@ -30,4 +30,4 @@ Para ejecutar la parte de Vue/webpack:
 1. instalar las dependencias (`cd frontend; npm install`)
 2. levantar el servidor de desarrollo de webpack (`npm run dev`)
 
-La presentación se puede encontrar [en slideshare](https://www.slideshare.net/secret/vnPNtyKLS7Ku7b)
+La presentación se puede encontrar [en slideshare](https://www.slideshare.net/JavierAbada/vuejs-django-configuracin-para-desarrollo-con-webpack-y-hmr)
