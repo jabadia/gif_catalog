@@ -1,6 +1,6 @@
 # Gif Catalog
 
-Este repositiorio contiene el código fuente que sirvió de ejemplo en la charla sobre Vue y Django que di en el meetup de Vue.js el 12/Sep/2017.
+Este repositiorio contiene el código fuente que sirvió de ejemplo en la charla sobre Vue y Django que di en [el meetup de Vue.js el 12/Sep/2017](https://www.meetup.com/es-ES/VueJS-Madrid/events/242801402/).
 
 Las etiquetas step1 hasta step6 marcan los distintos pasos:
 
