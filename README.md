@@ -1,4 +1,4 @@
-#Gif Catalog
+# Gif Catalog
 
 Este repositiorio contiene el código fuente que sirvió de ejemplo en la charla sobre Vue y Django que di en el meetup de Vue.js el 12/Sep/2017.
 
@@ -10,6 +10,9 @@ Las etiquetas step1 hasta step6 marcan los distintos pasos:
 * `step4`: una API sencilla para servir JSON desde Django y consumirla desde la app de Vue.js
 * `step5`: autenticación por sesiones de Django
 * `step6`: rutas (página de detalle)
+
+
+## Instalación
 
 Recomiendo primero hacer checkout de `master`, instalar las dependencias, etc y luego ir revisando el ejemplo paso por paso
 
